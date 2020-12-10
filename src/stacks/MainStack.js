@@ -9,7 +9,12 @@ const MainStack = createStackNavigator();
 
 //screen navigation
 export default () => (
-  <MainStack.Navigator>
+  <MainStack.Navigator screenOptions={{
+    headerStyle:{
+      backgroundColor:'#222222'
+    },
+    headerTintColor:'#FFFFFF'
+  }}>
     <MainStack.Screen name="List" component={ListScreen} />
     <MainStack.Screen name="Edit" component={EditScreen} />
   </MainStack.Navigator>
