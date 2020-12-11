@@ -10,7 +10,9 @@ import {
   SaveButton,
   SaveButtonImage,
   CloseButton,
-  CloseButtonImage
+  CloseButtonImage,
+  DeleteButton,
+  DeleteButtonText
 } from './styles';
 
 export default () => {
@@ -93,6 +95,19 @@ export default () => {
     navigation.goBack();
   }
 
+  //delete button function
+  const handleDeleteButton = () => {
+    //delete reducer NotesReducer.js
+    dispatch({
+      type: 'DEL_NOTE',
+      payload: {
+        key: route.params.key
+      }
+    });
+    //delete and return
+    navigation.goBack();
+  }
+
   return (
     <Container>
       <TitleInput
@@ -110,6 +125,13 @@ export default () => {
           multiline={true}
           textAlignVertical="top"
       />
+      {
+        //delete a note
+        status == 'edit' &&
+          <DeleteButton underlayColor='#FF4444' onPress={handleDeleteButton}>
+            <DeleteButtonText>Delete</DeleteButtonText>
+          </DeleteButton>
+      }
     </Container>
   );
 }
