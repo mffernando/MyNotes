@@ -9,10 +9,28 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+
+  let newList = [ ...state.list ];
+
   switch (action.type) {
     //new note
     case 'ADD_NOTE':
-      break;
+      newList.push({
+        title: action.payload.title,
+        body: action.payload.body
+      });
+    break;
+    
+    //edit note
+    case 'EDIT_NOTE':
+      if (newList[action.payload.key]) {
+        newList[action.payload.key] = {
+          title: action.payload.title,
+          body: action.payload.body
+        };
+      }
+    break;
+
   }
-  return state;
+  return { ...state, list: newList };
 }
